@@ -46,3 +46,48 @@ owing --format html ./src > debt-report.html
 | `type` | string | Fileter by comment type: TODO, FIXME, HACK, NOTE | all |
 | `format` | string | Output format: json, html | json |
 | `exclude` | string | Comma separated list of directories to exclude | .git, vendor, node_modules |
+
+## Examples
+
+### JSON output
+
+```
+$ owing --format json ./src
+
+[
+  {
+    "file": "./src/parser.go",
+    "line": 42,
+    "type": "TODO",
+    "message": "Improve error message"
+  },
+  {
+    "file": "./src/main.go",
+    "line": 15,
+    "type": "FIXME",
+    "message": "Handle edge for empty files"
+  }
+]
+```
+
+### HTML report
+
+```bash
+$ owing --format html ./src > debt-report.html 
+```
+Opens a formatted HTML page with searchable, sortable table of all comments.
+
+## Supported comment  formats
+
+`owing` recognizes comments in most programming languages:
+
+```
+// TODO: your message
+// FIXME: your message
+// HACK: your message
+// NOTE: your message
+
+/* TODO: your message */
+# TODO: your message
+-- TODO: your message
+```
