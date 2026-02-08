@@ -1,0 +1,31 @@
+# With no arguments, show usage message
+exec owing
+stderr 'Usage owing:'
+
+# With -format but no accompanying value, show error
+! exec owing -format
+stderr 'flag needs an argument: -format'
+
+# With -type but no accompanying value, show error
+! exec owing -type
+stderr 'flag needs an argument: -type'
+
+# With -exclude but no accompanying value, show error
+! exec owing -exclude
+stderr 'flag needs an argument: -exclude'
+
+# With -format but no path, show usage message
+exec owing -format html
+stderr 'Usage owing:'
+
+# With path but no flags, show output
+exec owing ./src
+stdout 'Scanning  with format json, type all, exclude .git, vendor, node_modules'
+
+# With -format html, show output
+exec owing -format html ./src
+stdout 'Scanning  with format html, type all, exclude .git, vendor, node_modules'
+
+# With -type TODO, show output
+exec owing -type TODO ./src
+stdout 'Scanning  with format json, type TODO, exclude .git, vendor, node_modules'
