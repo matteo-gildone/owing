@@ -9,7 +9,7 @@ import (
 func Main() {
 	format := flag.String("format", "json", "output format: json,html")
 	commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
-	exclude := flag.String("exclude", ".git, vendor, node_modules", "folders to exclude")
+	exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
 	flag.Parse()
 
 	if len(flag.Args()) < 1 {
@@ -20,5 +20,5 @@ func Main() {
 		return
 	}
 
-	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", flag.Arg(1), *format, *commentType, *exclude)
+	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", flag.Arg(0), *format, *commentType, *exclude)
 }

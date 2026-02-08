@@ -20,12 +20,12 @@ stderr 'Usage owing:'
 
 # With path but no flags, show output
 exec owing ./src
-stdout 'Scanning  with format json, type all, exclude .git, vendor, node_modules'
+stdout 'Scanning ./src with format json, type all, exclude .git,vendor,node_modules'
 
 # With -format html, show output
 exec owing -format html ./src
-stdout 'Scanning  with format html, type all, exclude .git, vendor, node_modules'
+stdout 'Scanning ./src with format html, type all, exclude .git,vendor,node_modules'
 
 # With -type TODO, show output
 exec owing -type TODO ./src
-stdout 'Scanning  with format json, type TODO, exclude .git, vendor, node_modules'
+stdout 'Scanning ./src with format json, type TODO, exclude .git,vendor,node_modules'
