@@ -3,7 +3,6 @@ package parser
 import (
 	"bufio"
 	"fmt"
-	"os"
 	"regexp"
 	"strings"
 )
@@ -16,7 +15,7 @@ type Match struct {
 	Line    int
 }
 
-func FileParser(text string) []Match {
+func CommentParser(text string) ([]Match, error) {
 	var todos []Match
 	scanner := bufio.NewScanner(strings.NewReader(text))
 	scanner.Split(bufio.ScanLines)
@@ -26,16 +25,13 @@ func FileParser(text string) []Match {
 
 		if len(matches) > 2 {
 			todos = append(todos, Match{Type: matches[1], Message: matches[2], Line: line + 1})
-			fmt.Printf("type: %q, message: %q, line:%d\n", matches[1], matches[2], line+1)
 		}
 
 		line++
 	}
 	if err := scanner.Err(); err != nil {
-		fmt.Fprintln(os.Stderr, "reading standard input:", err)
+		return nil, fmt.Errorf("reading standard input: %w", err)
 	}
 
-	fmt.Printf("%#v\n", todos)
-
-	return todos
+	return todos, nil
 }

@@ -22,9 +22,14 @@ func Main() {
 		os.Exit(1)
 	}
 
-	parser.FileParser(`// Simple patter:
+	_, err := parser.CommentParser(`// Simple patter:
 // TODO: message
 // FIXME: message`)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "couldn't parse file: %v", err)
+		os.Exit(1)
+	}
 
 	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", flag.Arg(0), *format, *commentType, *exclude)
 	os.Exit(0)
