@@ -1,9 +1,11 @@
 package main
 
 import (
+	"os"
+
 	"github.com/matteo-gildone/owing/internal/owing"
 )
 
 func main() {
-	owing.Main()
+	os.Exit(owing.Main())
 }

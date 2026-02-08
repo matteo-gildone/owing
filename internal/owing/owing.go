@@ -6,8 +6,14 @@ import (
 	"os"
 )
 
-func Main() {
-	format := flag.String("format", "json", "output format: json,html")
+// Simple patter:
+// TODO: message
+// FIXME: message
+
+// patter:= `(TODO|FIXME|HACK|NOTE):\s*(.+)`
+
+func Main() int {
+	format := flag.String("format", "text", "output format: text,json,html")
 	commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
 	exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
 	flag.Parse()
@@ -17,8 +23,9 @@ func Main() {
 			_ = fmt.Errorf("failed to print usage: %w", err)
 		}
 		flag.PrintDefaults()
-		return
+		return 1
 	}
 
 	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", flag.Arg(0), *format, *commentType, *exclude)
+	return 0
 }
