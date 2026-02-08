@@ -1,4 +1,7 @@
-# owing
+# Owing
+
+> [!NOTE]
+> Learning project!!!
 
 > Track what you're owing your codebase
 
@@ -41,11 +44,11 @@ owing --format html ./src > debt-report.html
 ```
 ### Options
 
-| Option | Type | Description | Default |
-| ------ | ---- | ----------- | ------- |
-| `type` | string | Fileter by comment type: TODO, FIXME, HACK, NOTE | all |
-| `format` | string | Output format: json, html | json |
-| `exclude` | string | Comma separated list of directories to exclude | .git, vendor, node_modules |
+| Option | Type | Description                                      | Default                    |
+| ------ | ---- |--------------------------------------------------|----------------------------|
+| `type` | string | Fileter by comment type: TODO, FIXME, HACK, NOTE | all                        |
+| `format` | string | Output format: text, json, html                  | text                       |
+| `exclude` | string | Comma separated list of directories to exclude   | .git, vendor, node_modules |
 
 ## Examples
 
