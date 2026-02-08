@@ -4,15 +4,11 @@ import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/matteo-gildone/owing/internal/parser"
 )
 
-// Simple patter:
-// TODO: message
-// FIXME: message
-
-// patter:= `(TODO|FIXME|HACK|NOTE):\s*(.+)`
-
-func Main() int {
+func Main() {
 	format := flag.String("format", "text", "output format: text,json,html")
 	commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
 	exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
@@ -23,9 +19,13 @@ func Main() int {
 			_ = fmt.Errorf("failed to print usage: %w", err)
 		}
 		flag.PrintDefaults()
-		return 1
+		os.Exit(1)
 	}
 
+	parser.FileParser(`// Simple patter:
+// TODO: message
+// FIXME: message`)
+
 	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", flag.Arg(0), *format, *commentType, *exclude)
-	return 0
+	os.Exit(0)
 }

@@ -1,5 +1,5 @@
 # With no arguments, show usage message
-exec owing
+! exec owing
 stderr 'Usage owing:'
 
 # With -format but no accompanying value, show error
@@ -15,7 +15,7 @@ stderr 'flag needs an argument: -type'
 stderr 'flag needs an argument: -exclude'
 
 # With -format but no path, show usage message
-exec owing -format html
+! exec owing -format html
 stderr 'Usage owing:'
 
 # With path but no flags, show output
