@@ -16,7 +16,7 @@ func Main() {
 
 	if len(flag.Args()) < 1 {
 		if _, err := fmt.Fprintf(os.Stderr, "Usage owing:\n"); err != nil {
-			_ = fmt.Errorf("failed to print usage: %w", err)
+			panic(err)
 		}
 		flag.PrintDefaults()
 		os.Exit(1)
