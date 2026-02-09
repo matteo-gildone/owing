@@ -2,33 +2,70 @@
 
 ## v1.0
 
+**Goal:** Basic working tool
+
 **Tasks**
 
 - [ ] Implement directory walker (fs.WalkDir)
   - [ ] Skip .git, vendor, node_modules 
   - [ ] Handle file read errors
-- [ ] Text output format
-  - Format: `file:line [TYPE] message`
-- [ ] Make file 
+- [ ] Text output format `file:line [TYPE] message`
+- [ ] Make file for build/install
 - [ ] Tag and push v1.0.0
+
+---
 
 ## v1.1
 
+**Goal:** Better readability
+
 **Tasks**
 
-- [ ] Statistic summary
 - [ ] Group comments by file
-- [ ] Improve text output format using stats and grouped by file
+- [ ] Statistic summary
+  - Total count
+  - Count by type
+  - Count by file
+- [ ] Improve text format using grouping
+
+**Example output**
+```bash
+Found 5 TODOs in 2 files:
+
+src/main.go (3):
+  15: [TODO] Refactor this
+  42: [FIXME] Handle error
+  67: [TODO] Add validation
+  
+src/parser.go (2):
+  12: [NOTE] Important context
+  67: [TODO] Refactor this
+```
+---
 
 ## v1.2
 
+**Goal** Prettier terminal output
+
 **Tasks**
 
-- [ ] Style library
-- [ ] Improve text output format using styles
+- [ ] Color output
+  - TODO: blue
+  - FIXME: yellow
+  - HACK: red
+  - NOTE: green
+- [ ] --no-color flag
+- [ ] Respect NO_COLOR env var
+
+---
 
 ## v2.0
+
+**Goal** Sharable reports 
 
 **Tasks**
 
 - [ ] HTML output with basic template
+- [ ] Group by file
+- [ ] Basic CSS styling
+- [ ] Generate with `owing --format html ./src > report.html`
