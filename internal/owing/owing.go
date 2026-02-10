@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/matteo-gildone/owing/internal/parser"
+	"github.com/matteo-gildone/owing/internal/finder"
 )
 
 func Main() {
@@ -13,6 +13,8 @@ func Main() {
 	commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
 	exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
 	flag.Parse()
+
+	dir := flag.Arg(0)
 
 	if len(flag.Args()) < 1 {
 		if _, err := fmt.Fprintf(os.Stderr, "Usage owing:\n"); err != nil {
@@ -22,15 +24,19 @@ func Main() {
 		os.Exit(1)
 	}
 
-	_, err := parser.CommentParser(`// Simple patter:
-// TODO: message
-// FIXME: message`)
+	fsys := os.DirFS(dir)
+
+	todos, err := finder.Files(fsys)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "couldn't parse file: %v", err)
+		fmt.Fprintf(os.Stderr, "couldn't parse files: %v", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", flag.Arg(0), *format, *commentType, *exclude)
+	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", dir, *format, *commentType, *exclude)
+
+	for _, todo := range todos {
+		fmt.Printf("%s:%d [%s] %s\n", todo.File, todo.Line, todo.Type, todo.Message)
+	}
 	os.Exit(0)
 }

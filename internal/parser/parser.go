@@ -21,13 +21,11 @@ func CommentParser(text string) ([]Match, error) {
 	scanner.Split(bufio.ScanLines)
 	var line int
 	for scanner.Scan() {
-		matches := pattern.FindStringSubmatch(scanner.Text())
-
-		if len(matches) > 2 {
-			todos = append(todos, Match{Type: matches[1], Message: matches[2], Line: line + 1})
+		line++
+		if matches := pattern.FindStringSubmatch(scanner.Text()); len(matches) > 2 {
+			todos = append(todos, Match{Type: matches[1], Message: matches[2], Line: line})
 		}
 
-		line++
 	}
 	if err := scanner.Err(); err != nil {
 		return nil, fmt.Errorf("reading standard input: %w", err)
