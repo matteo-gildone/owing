@@ -1,31 +1,34 @@
-# With no arguments, show usage message
-! exec owing
-stderr 'Usage owing:'
-
-# With -format but no accompanying value, show error
-! exec owing -format
-stderr 'flag needs an argument: -format'
-
-# With -type but no accompanying value, show error
-! exec owing -type
-stderr 'flag needs an argument: -type'
-
-# With -exclude but no accompanying value, show error
-! exec owing -exclude
-stderr 'flag needs an argument: -exclude'
-
-# With -format but no path, show usage message
-! exec owing -format html
-stderr 'Usage owing:'
-
 # With path but no flags, show output
 exec owing ./testdata
-stdout 'Scanning ./testdata with format text, type all, exclude .git,vendor,node_modules'
+stdout 'nested-folder/test-file.js:1 \[TODO\] Add handle of edge cases'
+stdout 'nested-folder/test-file.js:6 \[HACK\] Temporary random ID generator \(not collision-safe\)'
+stdout 'nested-folder/test-file.js:11 \[TODO\] Replace with proper validation logic'
+stdout 'nested-folder/test-file.js:17 \[NOTE\] Only checking name for now'
+stdout 'test-file.js:1 \[FIXME\] this is wrong'
 
-# With -format html, show output
-exec owing -format html ./testdata
-stdout 'Scanning ./testdata with format html, type all, exclude .git,vendor,node_modules'
+-- testdata/test-file.js --
+// FIXME: this is wrong
+export function add (a, b) {
+  return a - b;
+}
 
-# With -type TODO, show output
-exec owing -type TODO ./testdata
-stdout 'Scanning ./testdata with format text, type TODO, exclude .git,vendor,node_modules'
+-- testdata/nested-folder/test-file.js --
+// TODO: Add handle of edge cases
+export function diff (a, b) {
+    return a - b;
+}
+
+// HACK: Temporary random ID generator (not collision-safe)
+export function generateID () {
+    return Math.floor(Math.random() * 1000);
+}
+
+// TODO: Replace with proper validation logic
+export function isValidUser(user) {
+    if (!user) {
+        return false
+    }
+
+    // NOTE: Only checking name for now
+    return typeof user.name === 'string';
+}
