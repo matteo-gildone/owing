@@ -8,9 +8,9 @@ import (
 	"github.com/matteo-gildone/owing/internal/todo"
 )
 
-func Files(fsys fs.FS) ([]todo.Todo, error) {
+func Todos(fsys fs.FS, root string) ([]todo.Todo, error) {
 	var todos []todo.Todo
-	err := fs.WalkDir(fsys, ".", func(path string, d fs.DirEntry, err error) error {
+	err := fs.WalkDir(fsys, root, func(path string, d fs.DirEntry, err error) error {
 		if d.IsDir() {
 			if d.Name() == ".git" || d.Name() == "vendor" || d.Name() == "node_modules" {
 				return fs.SkipDir

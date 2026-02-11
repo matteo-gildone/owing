@@ -26,7 +26,7 @@ func Main() {
 
 	fsys := os.DirFS(dir)
 
-	todos, err := finder.Files(fsys)
+	todos, err := finder.Todos(fsys, ".")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "couldn't parse files: %v", err)
