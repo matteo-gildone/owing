@@ -52,6 +52,15 @@ owing --format html ./src > debt-report.html
 
 ## Examples
 
+### Text output
+
+```bash
+nested-folder/test-file.js:1 [TODO] refactor this
+test-file.js:1 [TODO] refactor this
+```
+
+> [!IMPORTANT]
+> Not available yet
 ### JSON output
 
 ```
@@ -73,6 +82,8 @@ $ owing --format json ./src
 ]
 ```
 
+> [!IMPORTANT]
+> Not available yet
 ### HTML report
 
 ```bash
