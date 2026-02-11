@@ -6,12 +6,12 @@
 
 **Tasks**
 
-- [ ] Implement directory walker (fs.WalkDir)
-  - [ ] Skip .git, vendor, node_modules 
-  - [ ] Handle file read errors
-- [ ] Text output format `file:line [TYPE] message`
-- [ ] Make file for build/install
-- [ ] Tag and push v1.0.0
+- [x] Implement directory walker (fs.WalkDir)
+  - [x] Skip .git, vendor, node_modules 
+  - [x] Handle file read errors
+- [x] Text output format `file:line [TYPE] message`
+- [x] Make file for build/install
+- [x] Tag and push v1.0.0
 
 ---
 

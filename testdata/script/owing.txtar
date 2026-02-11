@@ -19,13 +19,13 @@ stderr 'flag needs an argument: -exclude'
 stderr 'Usage owing:'
 
 # With path but no flags, show output
-exec owing ./src
-stdout 'Scanning ./src with format text, type all, exclude .git,vendor,node_modules'
+exec owing ./testdata
+stdout 'Scanning ./testdata with format text, type all, exclude .git,vendor,node_modules'
 
 # With -format html, show output
-exec owing -format html ./src
-stdout 'Scanning ./src with format html, type all, exclude .git,vendor,node_modules'
+exec owing -format html ./testdata
+stdout 'Scanning ./testdata with format html, type all, exclude .git,vendor,node_modules'
 
 # With -type TODO, show output
-exec owing -type TODO ./src
-stdout 'Scanning ./src with format text, type TODO, exclude .git,vendor,node_modules'
+exec owing -type TODO ./testdata
+stdout 'Scanning ./testdata with format text, type TODO, exclude .git,vendor,node_modules'

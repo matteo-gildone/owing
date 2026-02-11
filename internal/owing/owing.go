@@ -9,9 +9,9 @@ import (
 )
 
 func Main() {
-	format := flag.String("format", "text", "output format: text,json,html")
-	commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
-	exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
+	//format := flag.String("format", "text", "output format: text,json,html")
+	//commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
+	//exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
 	flag.Parse()
 
 	dir := flag.Arg(0)
@@ -32,8 +32,6 @@ func Main() {
 		fmt.Fprintf(os.Stderr, "couldn't parse files: %v", err)
 		os.Exit(1)
 	}
-
-	fmt.Printf("Scanning %s with format %s, type %s, exclude %s\n", dir, *format, *commentType, *exclude)
 
 	for _, todo := range todos {
 		fmt.Printf("%s:%d [%s] %s\n", todo.File, todo.Line, todo.Type, todo.Message)

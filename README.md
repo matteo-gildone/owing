@@ -55,8 +55,11 @@ owing --format html ./src > debt-report.html
 ### Text output
 
 ```bash
-nested-folder/test-file.js:1 [TODO] refactor this
-test-file.js:1 [TODO] refactor this
+nested-folder/test-file.js:1 [TODO] Add handle of edge cases
+nested-folder/test-file.js:6 [HACK] Temporary random ID generator (not collision-safe)
+nested-folder/test-file.js:11 [TODO] Replace with proper validation logic
+nested-folder/test-file.js:17 [NOTE] Only checking name for now
+test-file.js:1 [FIXME] this is wrong
 ```
 
 > [!IMPORTANT]
