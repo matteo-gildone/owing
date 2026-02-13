@@ -12,7 +12,7 @@ func Todos(fsys fs.FS, root string) ([]todo.Todo, error) {
 	var todos []todo.Todo
 	err := fs.WalkDir(fsys, root, func(path string, d fs.DirEntry, err error) error {
 		if d.IsDir() {
-			if d.Name() == ".git" || d.Name() == "vendor" || d.Name() == "node_modules" {
+			if d.Name() == ".git" || d.Name() == "vendor" || d.Name() == "node_modules" || d.Name() == "testdata" || d.Name() == "script" {
 				return fs.SkipDir
 			}
 			return nil

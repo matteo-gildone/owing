@@ -6,6 +6,8 @@ import (
 	"os"
 
 	"github.com/matteo-gildone/owing/internal/finder"
+	"github.com/matteo-gildone/owing/internal/formatter"
+	"github.com/matteo-gildone/owing/internal/reporter"
 )
 
 func Main() {
@@ -27,14 +29,18 @@ func Main() {
 	fsys := os.DirFS(dir)
 
 	todos, err := finder.Todos(fsys, ".")
-
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "couldn't parse files: %v", err)
 		os.Exit(1)
 	}
 
-	for _, todo := range todos {
-		fmt.Printf("%s:%d [%s] %s\n", todo.File, todo.Line, todo.Type, todo.Message)
+	report := reporter.NewReport(todos)
+
+	err = formatter.Text(os.Stdout, report)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "couldn't format files: %v", err)
+		os.Exit(1)
 	}
 	os.Exit(0)
 }
