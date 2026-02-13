@@ -3,12 +3,12 @@ exec owing ./testdata
 stdout 'Found 5 TODOs in 2 files'
 stdout 'FIXME: 1   HACK: 1   NOTE: 1   TODO: 2'
 stdout 'nested-folder/test-file.js \(4\)'
-stdout '1    \[TODO\] Add handle of edge cases'
-stdout '6    \[HACK\] Temporary random ID generator \(not collision-safe\)'
-stdout '11   \[TODO\] Replace with proper validation logic'
-stdout '17   \[NOTE\] Only checking name for now'
+stdout ' 1 \[TODO\] Add handle of edge cases'
+stdout ' 6 \[HACK\] Temporary random ID generator \(not collision-safe\)'
+stdout '11 \[TODO\] Replace with proper validation logic'
+stdout '17 \[NOTE\] Only checking name for now'
 stdout 'test-file.js \(1\)'
-stdout '1    \[FIXME\] this is wrong'
+stdout ' 1 \[FIXME\] this is wrong'
 
 -- testdata/test-file.js --
 // FIXME: this is wrong

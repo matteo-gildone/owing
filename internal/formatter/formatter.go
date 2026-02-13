@@ -44,7 +44,7 @@ func Text(w io.Writer, r reporter.Report) error {
 		fmt.Fprint(w, fileStyle.Render(header))
 		for _, t := range todos {
 			typeStyle := getStyleForType(t.Type)
-			fmt.Fprintf(w, "  %s %s %s\n", dimStyle.Render(fmt.Sprintf("%-4d", t.Line)), typeStyle.Render(fmt.Sprintf("[%s]", t.Type)), t.Message)
+			fmt.Fprintf(w, "  %s %s %s\n", dimStyle.Render(fmt.Sprintf("%2d", t.Line)), typeStyle.Render(fmt.Sprintf("[%s]", t.Type)), t.Message)
 		}
 		fmt.Fprintln(w)
 	}
