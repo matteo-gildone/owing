@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+
+	"github.com/matteo-gildone/owing/internal/todo"
 )
 
-var pattern = regexp.MustCompile(`(TODO|FIXME|HACK|NOTE):\s*(.+)`)
+var regex = fmt.Sprintf("(%s|%s|%s|%s):\\s*(.+)", todo.TypeTODO, todo.TypeFIXME, todo.TypeHACK, todo.TypeNOTE)
+var pattern = regexp.MustCompile(regex)
 
 type Match struct {
 	Type    string
