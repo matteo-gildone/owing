@@ -21,12 +21,12 @@
 
 **Tasks**
 
-- [ ] Group comments by file
-- [ ] Statistic summary
+- [x] Group comments by file
+- [x] Statistic summary
   - Total count
   - Count by type
   - Count by file
-- [ ] Improve text format using grouping
+- [x] Improve text format using grouping
 
 **Example output**
 ```bash

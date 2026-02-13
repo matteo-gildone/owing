@@ -21,7 +21,7 @@ func TestNewReport(t *testing.T) {
 	}
 
 	if r.CountByType["TODO"] != 2 {
-		t.Errorf("expected 2 TODOs, got %d", r.CountByType["a.go"])
+		t.Errorf("expected 2 TODOs, got %d", r.CountByType["TODO"])
 	}
 
 	if r.Total != 3 {
