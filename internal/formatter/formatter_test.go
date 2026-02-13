@@ -11,6 +11,7 @@ import (
 )
 
 func TestText(t *testing.T) {
+	t.Setenv("NO_COLOR", "1")
 	report := reporter.Report{
 		GroupedByFile: map[string][]todo.Todo{
 			"a.go": {

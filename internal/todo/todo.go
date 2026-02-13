@@ -1,5 +1,12 @@
 package todo
 
+const (
+	TypeTODO  = "TODO"
+	TypeFIXME = "FIXME"
+	TypeHACK  = "HACK"
+	TypeNOTE  = "NOTE"
+)
+
 type Todo struct {
 	File    string
 	Line    int
