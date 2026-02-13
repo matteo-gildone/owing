@@ -6,9 +6,11 @@ import (
 	"sort"
 
 	"github.com/matteo-gildone/owing/internal/reporter"
+	"github.com/matteo-gildone/owing/internal/styles"
 )
 
 func Text(w io.Writer, r reporter.Report) error {
+	fileStyle := styles.NewStyles().Cyan()
 	fmt.Fprintf(w, "Found %d TODOs in %d files\n", r.Total, len(r.GroupedByFile))
 
 	types := make([]string, 0, len(r.CountByType))
@@ -35,7 +37,7 @@ func Text(w io.Writer, r reporter.Report) error {
 
 	for _, file := range files {
 		todos := r.GroupedByFile[file]
-		fmt.Fprintf(w, "%s (%d):\n", file, len(todos))
+		fmt.Fprintf(w, fileStyle.Render(fmt.Sprintf("%s (%d):\n", file, len(todos))))
 		for _, t := range todos {
 			fmt.Fprintf(w, "  %d [%s] %s\n", t.Line, t.Type, t.Message)
 		}
