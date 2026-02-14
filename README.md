@@ -38,11 +38,16 @@ owing ./src
 ### Text output
 
 ```bash
-nested-folder/test-file.js:1 [TODO] Add handle of edge cases
-nested-folder/test-file.js:6 [HACK] Temporary random ID generator (not collision-safe)
-nested-folder/test-file.js:11 [TODO] Replace with proper validation logic
-nested-folder/test-file.js:17 [NOTE] Only checking name for now
-test-file.js:1 [FIXME] this is wrong
+Found 5 TODOs in 2 files
+FIXME: 1   HACK: 1   NOTE: 1   TODO: 2   
+nested-folder/test-file.js (4):
+   1 [TODO] Add handle of edge cases
+   6 [HACK] Temporary random ID generator (not collision-safe)
+  11 [TODO] Replace with proper validation logic
+  17 [NOTE] Only checking name for now
+
+test-file.js (1):
+   1 [FIXME] this is wrong
 ```
 
 ## Supported comment  formats
