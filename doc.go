@@ -53,9 +53,9 @@ Comments must follow this format (with or without space after colon):
 
 Owing respects terminal color preferences:
 
-- Detects NO_COLORS environment variable
-- Detects TERM=dumb for non-color terminals
-- Output remains readable without colors
+  - Detects NO_COLORS environment variable
+  - Detects TERM=dumb for non-color terminals
+  - Output remains readable without colors
 
 To disable colors:
 
