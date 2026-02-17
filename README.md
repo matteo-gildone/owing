@@ -1,7 +1,11 @@
 # Owing
 
-> [!NOTE]
-> Learning project!!!
+![Owing hero image](./img/hero.png) 
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/matteo-gildone/owing.svg)](https://pkg.go.dev/github.com/matteo-gildone/owing) 
+[![Go Report Card](https://goreportcard.com/badge/github.com/matteo-gildone/owing)](https://goreportcard.com/report/github.com/matteo-gildone/owing) 
+[![GitHub tag](https://img.shields.io/github/v/tag/matteo-gildone/owing)](https://github.com/matteo-gildone/owing/releases) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > Track what you're owing your codebase
 
@@ -32,23 +36,7 @@ owing .
 # Scan specific directory
 owing ./src
 ```
-
-## Examples
-
-### Text output
-
-```bash
-Found 5 TODOs in 2 files
-FIXME: 1   HACK: 1   NOTE: 1   TODO: 2   
-nested-folder/test-file.js (4):
-   1 [TODO] Add handle of edge cases
-   6 [HACK] Temporary random ID generator (not collision-safe)
-  11 [TODO] Replace with proper validation logic
-  17 [NOTE] Only checking name for now
-
-test-file.js (1):
-   1 [FIXME] this is wrong
-```
+![Owing basic usage](./img/owing-demo.gif)
 
 ## Supported comment  formats
 
@@ -64,3 +52,14 @@ test-file.js (1):
 # TODO: your message
 -- TODO: your message
 ```
+
+--- 
+
+## Acknowledgments 
+
+Mining for technical debt is hard work!  
+
+**Logo & Illustrations**: Created with the help of Gemini, inspired by the "Mining for Debt" concept. 
+
+**The Gopher**: Our favorite mascot was originally designed by the amazing [Renée French](http://reneefrench.blogspot.com/) 
+and is used under the Creative Commons 4.0 Attribution license.
