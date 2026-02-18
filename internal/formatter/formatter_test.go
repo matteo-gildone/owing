@@ -50,3 +50,38 @@ func TestText(t *testing.T) {
 		t.Errorf("missing file group in output:\n%s", output)
 	}
 }
+
+func TestHtml(t *testing.T) {
+	t.Setenv("NO_COLOR", "1")
+	report := reporter.Report{
+		GroupedByFile: map[string][]todo.Todo{
+			"main.go": {
+				{Type: "FIXME", Line: 20, Message: "refactor"},
+			},
+		},
+		CountByType: map[string]int{
+			"FIXME": 1,
+		},
+		Total: 1,
+	}
+
+	var buf bytes.Buffer
+	err := formatter.Html(&buf, report)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	output := buf.String()
+
+	if !strings.Contains(output, "<!DOCTYPE html>") {
+		t.Error("missing DOCTYPE")
+	}
+
+	if !strings.Contains(output, "FIXME 1") {
+		t.Errorf("missing FIXME stats in output:\n%s", output)
+	}
+
+	if !strings.Contains(output, "main.go") {
+		t.Error("missing file")
+	}
+}

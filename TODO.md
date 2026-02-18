@@ -49,13 +49,12 @@ src/parser.go (2):
 
 **Tasks**
 
-- [ ] Color output
+- [x] Color output
   - TODO: blue
   - FIXME: yellow
   - HACK: red
   - NOTE: green
-- [ ] --no-color flag
-- [ ] Respect NO_COLOR env var
+- [x] Respect NO_COLOR env var
 
 ---
 
@@ -65,7 +64,6 @@ src/parser.go (2):
 
 **Tasks**
 
-- [ ] HTML output with basic template
-- [ ] Group by file
-- [ ] Basic CSS styling
-- [ ] Generate with `owing --format html ./src > report.html`
+- [x] HTML output with basic template
+- [x] Basic CSS styling
+- [x] Generate with `owing --format html ./src > report.html`

@@ -11,7 +11,7 @@ import (
 )
 
 func Main() {
-	//format := flag.String("format", "text", "output format: text,json,html")
+	format := flag.String("format", "text", "output format: text,json,html")
 	//commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
 	//exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
 	flag.Parse()
@@ -36,7 +36,12 @@ func Main() {
 
 	report := reporter.NewReport(todos)
 
-	err = formatter.Text(os.Stdout, report)
+	switch *format {
+	case "html":
+		err = formatter.Html(os.Stdout, report)
+	default:
+		err = formatter.Text(os.Stdout, report)
+	}
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "couldn't format files: %v", err)
