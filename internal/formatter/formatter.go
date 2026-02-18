@@ -187,6 +187,7 @@ const htmlTemplate = `
         }
        
         .stat-badge {
+			font-family: var(--font-mono);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -254,6 +255,7 @@ const htmlTemplate = `
         }
        
         .file-name {
+			font-family: var(--font-mono);
             font-weight: 600;
             color: var(--color-text);
             display: flex;
@@ -292,6 +294,7 @@ const htmlTemplate = `
         }
        
         .todo-type {
+			font-family: var(--font-mono);
             display: inline-flex;
             align-items: center;
             gap: 0.35rem;
