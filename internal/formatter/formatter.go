@@ -435,7 +435,7 @@ func Text(w io.Writer, r reporter.Report) error {
 	sort.Strings(types)
 	for _, typ := range types {
 		typeStyle := getStyleForType(typ)
-		fmt.Fprintf(w, "%s: %d   ", typeStyle.Render(fmt.Sprintf("%s", typ)), r.CountByType[typ])
+		fmt.Fprintf(w, "%s: %d   ", typeStyle.Render(typ), r.CountByType[typ])
 	}
 
 	fmt.Fprintln(w)

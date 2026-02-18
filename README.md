@@ -38,6 +38,15 @@ owing ./src
 ```
 ![Owing basic usage](./img/owing-demo.gif)
 
+## HTML report
+
+```bash
+# Scan specific directory
+owing ./src --format html > report.html
+open report.html
+```
+![HMTL repoert demo](./img/report_html.png)
+
 ## Supported comment  formats
 
 `owing` recognizes comments in most programming languages:
@@ -52,10 +61,6 @@ owing ./src
 # TODO: your message
 -- TODO: your message
 ```
-
-## HTML report demo
-
-![HMTL repoert demo](./img/report_html.png)
 
 --- 
 
