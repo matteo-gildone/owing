@@ -263,6 +263,7 @@ const htmlTemplate = `
        
         .file-icon {
             color: var(--color-text-muted);
+			transform: scale(1.4)
         }
        
         .file-count {
@@ -419,12 +420,19 @@ const htmlTemplate = `
 			const details = document.querySelectorAll('details');
 			details.forEach((el, index) => {
 				const summary = el.querySelector('summary');
+				const icon = el.querySelector('.file-icon');
+
+				const updateState = () => {
+					const isOpen = el.open;
+					summary.setAttribute('aria-expanded', el.open);
+					icon.textContent = isOpen ? '📂' : '📁';
+				}
+				
 				if (index === 0) {
 					el.open = true;
 				}
 
-				summary.setAttribute('aria-expanded', el.open);
-				el.addEventListener('toggle', () => summary.setAttribute('aria-expanded', el.open));
+				el.addEventListener('toggle', updateState);
 			})
 
 		</script>
