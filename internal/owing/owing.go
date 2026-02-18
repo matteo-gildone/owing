@@ -8,11 +8,12 @@ import (
 	"github.com/matteo-gildone/owing/internal/finder"
 	"github.com/matteo-gildone/owing/internal/formatter"
 	"github.com/matteo-gildone/owing/internal/reporter"
+	"github.com/matteo-gildone/owing/internal/todo"
 )
 
 func Main() {
 	format := flag.String("format", "text", "output format: text,json,html")
-	//commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
+	commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
 	//exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
 	flag.Parse()
 
@@ -32,6 +33,10 @@ func Main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "couldn't parse files: %v", err)
 		os.Exit(1)
+	}
+
+	if *commentType != "all" {
+		todos = todo.FilterByType(todos, *commentType)
 	}
 
 	report := reporter.NewReport(todos)

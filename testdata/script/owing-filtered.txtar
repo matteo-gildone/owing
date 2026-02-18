@@ -1,0 +1,34 @@
+# With path and type flag, show output
+exec owing --type TODO ./testdata
+stdout 'Found 2 TODOs in 1 files'
+stdout 'TODO: 2'
+stdout 'nested-folder/test-file.js \(2\)'
+stdout ' 1 \[TODO\] Add handle of edge cases'
+stdout '11 \[TODO\] Replace with proper validation logic'
+
+-- testdata/test-file.js --
+// FIXME: this is wrong
+export function add (a, b) {
+  return a - b;
+}
+
+-- testdata/nested-folder/test-file.js --
+// TODO: Add handle of edge cases
+export function diff (a, b) {
+    return a - b;
+}
+
+// HACK: Temporary random ID generator (not collision-safe)
+export function generateID () {
+    return Math.floor(Math.random() * 1000);
+}
+
+// TODO: Replace with proper validation logic
+export function isValidUser(user) {
+    if (!user) {
+        return false
+    }
+
+    // NOTE: Only checking name for now
+    return typeof user.name === 'string';
+}

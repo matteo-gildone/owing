@@ -428,14 +428,14 @@ func Text(w io.Writer, r reporter.Report) error {
 
 	types := make([]string, 0, len(r.CountByType))
 
-	for typ := range r.CountByType {
-		types = append(types, typ)
+	for commentType := range r.CountByType {
+		types = append(types, commentType)
 	}
 
 	sort.Strings(types)
-	for _, typ := range types {
-		typeStyle := getStyleForType(typ)
-		fmt.Fprintf(w, "%s: %d   ", typeStyle.Render(typ), r.CountByType[typ])
+	for _, commentType := range types {
+		typeStyle := getStyleForType(commentType)
+		fmt.Fprintf(w, "%s: %d   ", typeStyle.Render(commentType), r.CountByType[commentType])
 	}
 
 	fmt.Fprintln(w)

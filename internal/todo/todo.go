@@ -22,3 +22,15 @@ func NewTodo(file, todoType, message string, line int) Todo {
 		Message: message,
 	}
 }
+
+func FilterByType(todos []Todo, commentType string) []Todo {
+	filtered := make([]Todo, 0, len(todos))
+
+	for _, ct := range todos {
+		if ct.Type == commentType {
+			filtered = append(filtered, ct)
+		}
+	}
+
+	return filtered
+}
