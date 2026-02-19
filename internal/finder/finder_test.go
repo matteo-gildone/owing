@@ -8,6 +8,7 @@ import (
 )
 
 func TestTodos(t *testing.T) {
+	excludeFoldersDefaults := toSet(".git", "vendor", "node_modules", "testdata", "script")
 	testFS := fstest.MapFS{
 		"main.go": &fstest.MapFile{
 			Data: []byte(`package main
@@ -22,7 +23,7 @@ func main() {}
 		},
 	}
 
-	todos, err := finder.Todos(testFS, ".")
+	todos, err := finder.Todos(testFS, ".", excludeFoldersDefaults)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -30,4 +31,14 @@ func main() {}
 	if len(todos) != 2 {
 		t.Errorf("expected 2 todos, got %d", len(todos))
 	}
+}
+
+func toSet(items ...string) map[string]struct{} {
+	set := make(map[string]struct{})
+
+	for _, d := range items {
+		set[d] = struct{}{}
+	}
+
+	return set
 }

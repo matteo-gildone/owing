@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/matteo-gildone/owing/internal/finder"
 	"github.com/matteo-gildone/owing/internal/formatter"
@@ -14,10 +15,26 @@ import (
 func Main() {
 	format := flag.String("format", "text", "output format: text,json,html")
 	commentType := flag.String("type", "all", "comment type: TODO, FIXME, HACK, NOTE")
-	//exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
+	exclude := flag.String("exclude", ".git,vendor,node_modules", "folders to exclude")
 	flag.Parse()
 
 	dir := flag.Arg(0)
+
+	excludeFoldersDefaults := []string{".git", "vendor", "node_modules", "testdata", "script"}
+	excludeFolders := make(map[string]struct{})
+
+	for _, d := range excludeFoldersDefaults {
+		excludeFolders[d] = struct{}{}
+	}
+
+	for _, folder := range strings.Split(*exclude, ",") {
+		trimmed := strings.TrimSpace(folder)
+		if trimmed != "" {
+			excludeFolders[folder] = struct{}{}
+		}
+	}
+
+	fmt.Println(excludeFolders)
 
 	if len(flag.Args()) < 1 {
 		if _, err := fmt.Fprintf(os.Stderr, "Usage owing:\n"); err != nil {
@@ -29,7 +46,7 @@ func Main() {
 
 	fsys := os.DirFS(dir)
 
-	todos, err := finder.Todos(fsys, ".")
+	todos, err := finder.Todos(fsys, ".", excludeFolders)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "couldn't parse files: %v", err)
 		os.Exit(1)

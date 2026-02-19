@@ -8,11 +8,11 @@ import (
 	"github.com/matteo-gildone/owing/internal/todo"
 )
 
-func Todos(fsys fs.FS, root string) ([]todo.Todo, error) {
+func Todos(fsys fs.FS, root string, exclude map[string]struct{}) ([]todo.Todo, error) {
 	var todos []todo.Todo
 	err := fs.WalkDir(fsys, root, func(path string, d fs.DirEntry, err error) error {
 		if d.IsDir() {
-			if d.Name() == ".git" || d.Name() == "vendor" || d.Name() == "node_modules" || d.Name() == "testdata" || d.Name() == "script" {
+			if _, ok := exclude[d.Name()]; ok {
 				return fs.SkipDir
 			}
 			return nil
