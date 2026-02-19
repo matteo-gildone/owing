@@ -30,7 +30,7 @@ func Main() {
 	for _, folder := range strings.Split(*exclude, ",") {
 		trimmed := strings.TrimSpace(folder)
 		if trimmed != "" {
-			excludeFolders[folder] = struct{}{}
+			excludeFolders[trimmed] = struct{}{}
 		}
 	}
 

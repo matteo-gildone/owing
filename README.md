@@ -38,7 +38,17 @@ owing ./src
 ```
 ![Owing basic usage](./img/owing-demo.gif)
 
-## HTML report
+### Exclude directories
+
+```bash
+# Default excludes: .git,vendor,node_modules
+owing .
+
+# Add custom excludes
+owing ./src --exclude "dist,build,out"
+```
+
+### HTML report
 
 ```bash
 # Scan specific directory
