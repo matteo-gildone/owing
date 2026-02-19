@@ -34,8 +34,6 @@ func Main() {
 		}
 	}
 
-	fmt.Println(excludeFolders)
-
 	if len(flag.Args()) < 1 {
 		if _, err := fmt.Fprintf(os.Stderr, "Usage owing:\n"); err != nil {
 			panic(err)
