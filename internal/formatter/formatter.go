@@ -6,8 +6,8 @@ import (
 	"io"
 	"sort"
 
+	"github.com/matteo-gildone/gostyl"
 	"github.com/matteo-gildone/owing/internal/reporter"
-	"github.com/matteo-gildone/owing/internal/styles"
 	"github.com/matteo-gildone/owing/internal/todo"
 )
 
@@ -436,7 +436,7 @@ const htmlTemplate = `
 `
 
 func Text(w io.Writer, r reporter.Report) error {
-	baseStyle := styles.NewStyles()
+	baseStyle := gostyl.NewStyle()
 	fileStyle := baseStyle.Bold()
 	dimStyle := baseStyle.Dim()
 	fmt.Fprintf(w, "Found %d TODOs in %d files\n", r.Total, len(r.GroupedByFile))
@@ -450,7 +450,7 @@ func Text(w io.Writer, r reporter.Report) error {
 	sort.Strings(types)
 	for _, commentType := range types {
 		typeStyle := getStyleForType(commentType)
-		fmt.Fprintf(w, "%s: %d   ", typeStyle.Render(commentType), r.CountByType[commentType])
+		fmt.Fprintf(w, "%s: %d   ", typeStyle.Sprint(commentType), r.CountByType[commentType])
 	}
 
 	fmt.Fprintln(w)
@@ -466,10 +466,10 @@ func Text(w io.Writer, r reporter.Report) error {
 	for _, file := range files {
 		todos := r.GroupedByFile[file]
 		header := fmt.Sprintf("%s (%d):\n", file, len(todos))
-		fmt.Fprint(w, fileStyle.Render(header))
+		fmt.Fprint(w, fileStyle.Sprint(header))
 		for _, t := range todos {
 			typeStyle := getStyleForType(t.Type)
-			fmt.Fprintf(w, "  %s %s %s\n", dimStyle.Render(fmt.Sprintf("%2d", t.Line)), typeStyle.Render(fmt.Sprintf("[%s]", t.Type)), t.Message)
+			fmt.Fprintf(w, "  %s %s %s\n", dimStyle.Sprintf("%2d", t.Line), typeStyle.Sprintf("[%s]", t.Type), t.Message)
 		}
 		fmt.Fprintln(w)
 	}
@@ -482,8 +482,8 @@ func Html(w io.Writer, r reporter.Report) error {
 	return tmpl.Execute(w, r)
 }
 
-func getStyleForType(todoType string) styles.Style {
-	base := styles.NewStyles()
+func getStyleForType(todoType string) gostyl.Gostyl {
+	base := gostyl.NewStyle()
 
 	switch todoType {
 	case todo.TypeTODO:

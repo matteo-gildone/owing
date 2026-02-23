@@ -1,3 +1,5 @@
+github.com/matteo-gildone/gostyl v0.1.0 h1:Hyh+AfbpIdaNJcJjbwq5qNV5lWsuggjuvAzq07MJuM8=
+github.com/matteo-gildone/gostyl v0.1.0/go.mod h1:HFOSYMOf730c/sJ78aca2hwnDhkS+n3eZHBcU3V1Hk4=
 github.com/rogpeppe/go-internal v1.14.1 h1:UQB4HGPB6osV0SQTLymcB4TgvyWu6ZyliaW0tI/otEQ=
 github.com/rogpeppe/go-internal v1.14.1/go.mod h1:MaRKkUm5W0goXpeCfT7UZI6fk/L7L7so1lCWt35ZSgc=
 golang.org/x/sys v0.26.0 h1:KHjCJyddX0LoSTb3J+vWpupP9p0oznkqVk/IfjymZbo=
