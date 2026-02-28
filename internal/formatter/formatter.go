@@ -482,7 +482,7 @@ func Html(w io.Writer, r reporter.Report) error {
 	return tmpl.Execute(w, r)
 }
 
-func getStyleForType(todoType string) gostyl.Gostyl {
+func getStyleForType(todoType string) gostyl.Style {
 	base := gostyl.NewStyle()
 
 	switch todoType {
